@@ -9,5 +9,5 @@ sdet/sdet.iml
 node_modules
 .vs
 .vagrant
-package-lock.json
+
 *.log
