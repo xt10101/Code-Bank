@@ -26,7 +26,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+     # Step: Install dependencies (with working-directory specified in this run step)
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./nodejs20-sparta-test-app/app  # This is where package-lock.json is located
+
+    # Step: Run build (with working-directory specified)
+    - name: Run build (if present)
+      run: npm run build --if-present
       working-directory: ./nodejs20-sparta-test-app/app
-    - run: npmci
-    - run: npm run build --if-present
-    - run: npm test
+
+    # Step: Run tests (with working-directory specified)
+    - name: Run tests
+      run: npm test
+      working-directory: ./nodejs20-sparta-test-app/app
